@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>A4 — Eu te amo com linha fina (Jogo Educativo)</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <!-- Botão de controle da música -->
+      <button
+        id="music-toggle-btn"
+        class="music-toggle"
+        aria-label="Controlar música"
+      >
+        🔇
+      </button>
+
+      <!-- Tela inicial -->
+      <section id="start-screen" class="screen active">
+        <div class="card">
+          <h1>🌎 Jogo dos Biomas</h1>
+          <p class="lead">
+            Escolha os temas, jogue o dado e avance no tabuleiro para salvar o
+            planeta!
+          </p>
+
+          <div id="theme-selection" class="theme-selection">
+            <h3>Selecione os temas para jogar:</h3>
+            <div id="theme-list" class="theme-list">
+              <!-- Lista de temas será inserida pelo JS -->
+            </div>
+            <div class="theme-actions">
+              <button id="create-theme-btn" class="btn">Criar Novo Tema</button>
+              <button id="start-btn" class="btn primary">Começar Jogo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tela do Tabuleiro -->
+      <section id="board-screen" class="screen">
+        <div class="card">
+          <div class="board-header">
+            <div class="score-display">
+              <strong>Total:</strong>
+              <div id="board-total-score" class="big">0</div>
+            </div>
+            <div class="dice-area">
+              <button id="roll-dice-btn" class="btn primary">
+                🎲 Jogar Dado
+              </button>
+              <div class="dice-container">
+                <div id="dice" class="dice">
+                  <div class="face front">1</div>
+                  <div class="face back">6</div>
+                  <div class="face top">2</div>
+                  <div class="face bottom">5</div>
+                  <div class="face right">3</div>
+                  <div class="face left">4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="board-container">
+            <div id="game-board" class="game-board">
+              <!-- Casas do tabuleiro serão geradas pelo JS -->
+              <div id="player-pawn" class="player-pawn">🚀</div>
+            </div>
+          </div>
+          <div class="controls">
+            <button id="board-back-btn" class="btn">Voltar ao Início</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Demais telas do jogo (problema, ODS, resultado, final) -->
+      <section id="problem-screen" class="screen">
+        <div class="card">
+          <h2 id="biome-title">Bioma</h2>
+          <p id="biome-desc" class="lead"></p>
+          <h3>Escolha um problema 🔥</h3>
+          <div id="problem-list" class="grid"></div>
+          <div class="controls">
+            <button id="problem-back" class="btn">Voltar</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="ods-screen" class="screen">
+        <div class="card">
+          <h2 id="problem-title">Problema</h2>
+          <p id="problem-desc" class="lead"></p>
+          <h3>Escolha um ODS ✨</h3>
+          <div id="ods-list" class="grid ods-grid"></div>
+          <div class="controls">
+            <button id="ods-back" class="btn">Voltar</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="result-screen" class="screen">
+        <div class="card">
+          <h2>Resultado ✅</h2>
+          <p id="choice-summary" class="lead"></p>
+          <div class="score-row">
+            <div>
+              <strong>Pontos Ganhos:</strong>
+              <div id="round-score" class="big">0</div>
+            </div>
+            <div>
+              <strong>Total:</strong>
+              <div id="total-score" class="big">0</div>
+            </div>
+          </div>
+          <div class="progress-wrap">
+            <label>Progresso:</label>
+            <div class="progress">
+              <div id="progress-bar" class="progress-bar"></div>
+            </div>
+          </div>
+          <div class="controls">
+            <button id="continue-game-btn" class="btn primary">
+              Continuar no Tabuleiro
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="final-screen" class="screen">
+        <div class="card">
+          <h2>Parabéns!🎉</h2>
+          <p id="final-text" class="lead"></p>
+          <div class="final-score">
+            <span>Score final:</span>
+            <div id="final-score" class="big">0</div>
+          </div>
+          <div class="controls">
+            <button id="play-again" class="btn">Jogar novamente</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal para Criar Tema -->
+    <div id="create-theme-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <h2>Criar Novo Tema (Bioma)</h2>
+        <form id="create-theme-form">
+          <input
+            type="text"
+            id="theme-name"
+            placeholder="Nome do Tema (ex: Manguezal)"
+            required
+          />
+          <input
+            type="text"
+            id="theme-desc"
+            placeholder="Descrição curta"
+            required
+          />
+          <input
+            type="text"
+            id="theme-emoji"
+            placeholder="Emoji que representa (ex: 🦀)"
+            required
+          />
+          <div class="modal-actions">
+            <button type="button" id="cancel-theme-btn" class="btn">
+              Cancelar
+            </button>
+            <button type="submit" class="btn primary">Salvar Tema</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer"><small></small></footer>
+
+    <audio id="background-music" loop>
+      <source src="audio/background-music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="./js/game.js" type="module"></script>
+  </body>
+</html>
