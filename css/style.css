@@ -1,3 +1,6 @@
+body{
+  background-image: url('../assets/background.jpeg');
+}
 :root {
   --accent: #1b6b3a;
   --accent-light: #e8f5e9; /* Verde bem claro para fundos sutis */
@@ -9,6 +12,7 @@
   --bg-light: #f8f9fa;
   --border-color: #e9ecef; /* Borda mais clara */
 }
+
 
 @keyframes fadeIn {
   from {
