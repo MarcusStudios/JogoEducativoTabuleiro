@@ -1,5 +1,5 @@
-body{
-  background-image: url('../assets/background.jpeg');
+body {
+  background-image: url("../assets/background.jpeg");
 }
 :root {
   --accent: #1b6b3a;
@@ -12,7 +12,6 @@ body{
   --bg-light: #f8f9fa;
   --border-color: #e9ecef; /* Borda mais clara */
 }
-
 
 @keyframes fadeIn {
   from {
@@ -146,12 +145,13 @@ h3 {
   border-color: var(--accent);
 }
 
-.option .points {
-  margin-top: 6px;
-  font-weight: 700;
-  color: var(--accent);
+/* Oculta os pontos na tela de seleção de ODS e na tela de resultado de cada rodada */
+.ods-grid .option .points,
+.score-row {
+  display: none;
 }
 
+/* Estilos para o placar final */
 .big {
   font-size: 24px;
   color: var(--accent);

@@ -135,13 +135,13 @@ function continueGame() {
 
 // ===================== LÓGICA DO TABULEIRO =====================
 function generateBoard() {
-  const boardSize = state.selectedThemes.length * 2 + 3;
+  const boardSize = state.selectedThemes.length * 3 + 2;
   state.board = [];
   state.board.push({ type: "start" });
 
   let themeIndex = 0;
-  for (let i = 1; i < boardSize - 1; i++) {
-    if (i % 2 !== 0 && themeIndex < state.selectedThemes.length) {
+  for (let i = 0; i < state.selectedThemes.length * 2; i++) {
+    if (i % 2 === 0 && themeIndex < state.selectedThemes.length) {
       state.board.push({ type: "biome", id: state.selectedThemes[themeIndex] });
       themeIndex++;
     } else {
