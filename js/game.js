@@ -166,7 +166,7 @@ function movePlayer(steps) {
     state.playerPosition = state.board.length - 1;
   }
   updatePawnPosition(state);
-  setTimeout(triggerSpaceEvent, 800);
+  setTimeout(triggerSpaceEvent, 1300); // Aumentado para corresponder à nova duração da animação
 }
 
 function triggerSpaceEvent() {
