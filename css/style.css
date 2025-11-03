@@ -379,7 +379,7 @@ h3 {
 
 /* === LOGO DO SITE === */
 .site-logo {
-  position: fixed;
+  position: absolute;
   top: 15px;
   left: 15px;
   width: 70px;
