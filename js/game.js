@@ -89,7 +89,7 @@ function selectBiome(id) {
   // Renderiza a lista de problemas para o jogador escolher.
   renderOptions(
     "#problem-list",
-    allGameData.problems,
+    b.problems || [], // Usa os problemas do bioma selecionado.
     (p) => `<strong>${p.name}</strong><br><small>${p.desc}</small>`,
     (p) => selectProblem(p) // p é o objeto completo do problema
   );
@@ -104,36 +104,37 @@ function selectProblem(p) {
   state.current.problem = p;
   updateODSScreen(p);
 
-  // Renderiza a lista de ODS para o jogador escolher como solução.
+  // Renderiza a lista de soluções (que agora estão dentro do próprio problema) para o jogador escolher.
   renderOptions(
     "#ods-list",
-    allGameData.ods,
+    p.solutions || [], // Usa a lista de soluções do problema.
     (o) =>
-      `<div><strong>${o.title}</strong></div><small>${o.desc}</small><div class="points">+${o.points}</div>`,
-    (o) => selectODS(o) // o é o objeto completo do ODS
+      // A resposta 'o' agora é um objeto com 'text' e 'points'.
+      `<div>${o.text}</div><div class="points">+${o.points}</div>`,
+    (o) => selectSolution(o) // o é o objeto completo da solução
   );
 
   // Mostra a tela de seleção de ODS.
   showScreen("ods");
 }
 
-// ===================== ETAPA 3 - ESCOLHA DO ODS =====================
-function selectODS(odsObject) {
-  // Armazena o ODS escolhido.
-  state.current.ods = odsObject;
+// ===================== ETAPA 3 - ESCOLHA DA SOLUÇÃO =====================
+function selectSolution(solutionObject) {
+  // Armazena a solução escolhida.
+  state.current.solution = solutionObject;
   beep(800, 0.1);
 
   // Salva a jogada completa (bioma, problema, ODS) no histórico de rodadas.
   state.rounds.push({
     biome: state.current.biome,
     problem: state.current.problem,
-    ods: odsObject,
+    solution: solutionObject,
   });
 
-  state.total += odsObject.points;
-  
+  state.total += solutionObject.points;
+
   // Atualiza a tela de resultado com os pontos ganhos e o total.
-  updateResultScreen(state, odsObject.points);
+  updateResultScreen(state, solutionObject.points);
   // Atualiza a barra de progresso no tabuleiro.
   updateProgress(state);
   showScreen("result");

@@ -75,10 +75,10 @@ export function updateODSScreen(problem) {
 
 // Atualiza a tela de "Resultado" após o jogador escolher um ODS.
 export function updateResultScreen(state, points) {
-  const { biome, problem, ods } = state.current;
+  const { biome, problem, solution } = state.current;
   $(
     "#choice-summary"
-  ).innerHTML = `${biome.name} → ${problem.name}<br>Você escolheu <strong>${ods.title}</strong>`;
+  ).innerHTML = `${biome.name} → ${problem.name}<br>Sua solução: <strong>${solution.text}</strong>`;
   animateCount($("#round-score"), points);
   animateCount($("#total-score"), state.total);
   $("#continue-game-btn").focus();
@@ -100,7 +100,7 @@ export function showFinalScreen(state, allBiomes) {
   const resumo = state.rounds
     .map(
       (r) =>
-        `• ${r.biome.name} — ${r.problem.name} → ${r.ods.title} (+${r.ods.points})`
+        `• ${r.biome.name} — ${r.problem.name} → ${r.solution.text} (+${r.solution.points})`
     )
     .join("<br>");
   $("#final-score").textContent = state.total;
