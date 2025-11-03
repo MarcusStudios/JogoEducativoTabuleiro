@@ -1,6 +1,8 @@
 /* Define uma imagem de fundo para todo o corpo da página. */
+/* Define uma cor de fundo para todo o corpo da página. */
 body {
   background-image: url("../assets/background.jpeg");
+  background-color: #000;
 }
 /* Define variáveis CSS globais para cores, transições e fontes, facilitando a manutenção do tema. */
 :root {
