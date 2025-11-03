@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <!-- Metadados básicos do documento -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Geografia - Jogo dos Biomas</title>
 
+    <!-- Importação da fonte 'Poppins' do Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Link para a folha de estilos principal -->
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- Ícone da página (favicon) -->
     <link rel="icon" href="assets/favicon.png"image/png" />
   </head>
   <body>
-    <!-- Logo no canto superior esquerdo -->
+    <!-- Logo do IFMS no canto superior esquerdo, com link para o site oficial -->
     <a
       href="https://www.ifma.edu.br/"
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="assets/favicon.png" alt="Logo IFMS" class="site-logo" />
+      <img src="assets/favicon.png" alt="Logo IFMA" class="site-logo" />
     </a>
     <main id="app">
       <!-- Botão de controle da música -->
@@ -31,7 +35,7 @@
         🔇
       </button>
 
-      <!-- Tela inicial -->
+      <!-- TELA 1: Tela Inicial (Start Screen) -->
       <section id="start-screen" class="screen active">
         <div class="card">
           <h1>🌎 Jogo dos Biomas</h1>
@@ -40,6 +44,7 @@
             planeta!
           </p>
 
+          <!-- Área de seleção de temas -->
           <div id="theme-selection" class="theme-selection">
             <h3>Selecione os temas para jogar:</h3>
             <div id="theme-list" class="theme-list">
@@ -53,15 +58,18 @@
         </div>
       </section>
 
-      <!-- Tela do Tabuleiro -->
+      <!-- TELA 2: Tela do Tabuleiro (Board Screen) -->
       <section id="board-screen" class="screen">
         <div class="card">
           <div class="board-header">
+            <!-- Placar total de pontos exibido no tabuleiro -->
             <div class="score-display">
               <strong>Total:</strong>
               <div id="board-total-score" class="big">0</div>
             </div>
+            <!-- Área do dado -->
             <div class="dice-area">
+              <!-- Botão para rolar o dado -->
               <button id="roll-dice-btn" class="btn primary">
                 🎲 Jogar Dado
               </button>
@@ -77,19 +85,22 @@
               </div>
             </div>
           </div>
+          <!-- Container do tabuleiro que permite rolagem horizontal -->
           <div class="board-container">
             <div id="game-board" class="game-board">
               <!-- Casas do tabuleiro serão geradas pelo JS -->
+              <!-- Peão do jogador -->
               <div id="player-pawn" class="player-pawn">🚀</div>
             </div>
           </div>
+          <!-- Controles da tela do tabuleiro -->
           <div class="controls">
             <button id="board-back-btn" class="btn">Voltar ao Início</button>
           </div>
         </div>
       </section>
 
-      <!-- Demais telas do jogo (problema, ODS, resultado, final) -->
+      <!-- TELA 3: Tela de Problema (Problem Screen) -->
       <section id="problem-screen" class="screen">
         <div class="card">
           <h2 id="biome-title">Bioma</h2>
@@ -102,6 +113,7 @@
         </div>
       </section>
 
+      <!-- TELA 4: Tela de ODS (ODS Screen) -->
       <section id="ods-screen" class="screen">
         <div class="card">
           <h2 id="problem-title">Problema</h2>
@@ -114,10 +126,12 @@
         </div>
       </section>
 
+      <!-- TELA 5: Tela de Resultado da Rodada (Result Screen) -->
       <section id="result-screen" class="screen">
         <div class="card">
           <h2>Resultado ✅</h2>
           <p id="choice-summary" class="lead"></p>
+          <!-- Placar da rodada e total -->
           <div class="score-row">
             <div>
               <strong>Pontos Ganhos:</strong>
@@ -128,6 +142,7 @@
               <div id="total-score" class="big">0</div>
             </div>
           </div>
+          <!-- Barra de progresso do jogo -->
           <div class="progress-wrap">
             <label>Progresso:</label>
             <div class="progress">
@@ -142,6 +157,7 @@
         </div>
       </section>
 
+      <!-- TELA 6: Tela Final (Final Screen) -->
       <section id="final-screen" class="screen">
         <div class="card">
           <h2>Parabéns!🎉</h2>
@@ -157,11 +173,12 @@
       </section>
     </main>
 
-    <!-- Modal para Criar Tema -->
+    <!-- MODAL: Janela para Criar um Novo Tema -->
     <div id="create-theme-modal" class="modal-overlay" style="display: none">
       <div class="modal-content">
         <h2>Criar Novo Tema (Bioma)</h2>
         <form id="create-theme-form">
+          <!-- Campos do formulário para o novo tema -->
           <input
             type="text"
             id="theme-name"
@@ -180,6 +197,7 @@
             placeholder="Emoji que representa (ex: 🦀)"
             required
           />
+          <!-- Botões de ação do modal -->
           <div class="modal-actions">
             <button type="button" id="cancel-theme-btn" class="btn">
               Cancelar
@@ -190,12 +208,15 @@
       </div>
     </div>
 
+    <!-- Rodapé da página -->
     <footer class="footer"><small></small></footer>
 
+    <!-- Elemento de áudio para a música de fundo -->
     <audio id="background-music" loop>
       <source src="audio/background-music.mp3" type="audio/mpeg" />
     </audio>
 
+    <!-- Importação do script principal do jogo. 'type="module"' permite usar import/export. -->
     <script src="./js/game.js" type="module"></script>
   </body>
 </html>

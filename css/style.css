@@ -1,6 +1,8 @@
+/* Define uma imagem de fundo para todo o corpo da página. */
 body {
   background-image: url("../assets/background.jpeg");
 }
+/* Define variáveis CSS globais para cores, transições e fontes, facilitando a manutenção do tema. */
 :root {
   --accent: #1b6b3a;
   --accent-light: #e8f5e9; /* Verde bem claro para fundos sutis */
@@ -13,6 +15,7 @@ body {
   --border-color: #e9ecef; /* Borda mais clara */
 }
 
+/* Animação de fade-in e surgimento suave para elementos. */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -24,6 +27,7 @@ body {
   }
 }
 
+/* Animação para o resultado do dado (não mais usada, substituída pela animação 3D). */
 @keyframes dice-roll {
   from {
     opacity: 0;
@@ -35,10 +39,12 @@ body {
   }
 }
 
+/* Reset básico para garantir que o tamanho dos elementos inclua padding e borda. */
 * {
   box-sizing: border-box;
 }
 
+/* Estilos principais para o corpo da página. */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -52,12 +58,14 @@ body {
   padding: 24px;
 }
 
+/* Container principal da aplicação. */
 main {
   width: 100%;
   max-width: 900px;
   position: relative; /* Para empilhar as telas */
 }
 
+/* Estilo base para todas as telas. Por padrão, ficam invisíveis. */
 .screen {
   opacity: 0;
   visibility: hidden;
@@ -66,12 +74,14 @@ main {
   width: 100%;
 }
 
+/* A classe 'active' torna a tela visível. */
 .screen.active {
   opacity: 1;
   visibility: visible;
   position: relative; /* Traz a tela ativa para o fluxo normal */
 }
 
+/* Estilo base para os "cartões" que contêm o conteúdo de cada tela. */
 .card {
   background: var(--bg-light);
   border-radius: 16px; /* Borda mais arredondada */
@@ -81,6 +91,7 @@ main {
   animation: fadeIn 0.4s ease-out both;
 }
 
+/* Estilos para títulos. */
 h1,
 h2,
 h3 {
@@ -91,6 +102,7 @@ h3 {
   color: var(--muted);
 }
 
+/* Estilo base para botões. */
 .btn {
   background: transparent;
   border: 1px solid var(--border-color);
@@ -101,12 +113,14 @@ h3 {
   transition: all var(--transition);
   color: var(--muted);
 }
+/* Estilo para botões primários (destaque). */
 .btn.primary {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
 }
 
+/* Efeito de hover para todos os botões. */
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
@@ -139,19 +153,21 @@ h3 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+/* Efeito de hover para as opções. */
 .option:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
   border-color: var(--accent);
 }
 
-/* Oculta os pontos na tela de seleção de ODS e na tela de resultado de cada rodada */
+/* Oculta os pontos durante o jogo para que apareçam apenas no final. */
 .ods-grid .option .points,
-.score-row {
+.score-row,
+.score-display {
   display: none;
 }
 
-/* Estilos para o placar final */
+/* Estilo para números grandes, como placares. */
 .big {
   font-size: 24px;
   color: var(--accent);
@@ -165,6 +181,7 @@ h3 {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
 }
 
+/* Barra de progresso em si. A largura é controlada via JavaScript. */
 .progress-bar {
   height: 100%;
   background: var(--accent);
@@ -172,6 +189,7 @@ h3 {
   transition: width 0.5s;
 }
 
+/* Estilo do rodapé. */
 .footer {
   text-align: center;
   margin-top: 12px;
@@ -185,6 +203,7 @@ h3 {
   border-top: 1px solid var(--border-color);
   padding-top: 24px;
 }
+/* Grade para a lista de temas na tela inicial. */
 .theme-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -196,6 +215,7 @@ h3 {
     grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
   }
 }
+/* Estilo de cada item na lista de temas. */
 .theme-item {
   display: flex;
   align-items: center;
@@ -207,6 +227,7 @@ h3 {
   transition: all var(--transition);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
+/* Estilo visual para um tema selecionado. */
 .theme-item.selected {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-light);
@@ -216,6 +237,7 @@ h3 {
   margin-right: 10px;
   transform: scale(1.2);
 }
+/* Botão para apagar um tema personalizado. */
 .delete-theme-btn {
   background: transparent;
   border: none;
@@ -227,6 +249,7 @@ h3 {
 .delete-theme-btn:hover {
   opacity: 1;
 }
+/* Container para os botões de ação da tela de temas. */
 .theme-actions {
   display: flex;
   justify-content: center;
@@ -234,6 +257,7 @@ h3 {
 }
 
 /* === MODAL === */
+/* Fundo escurecido para o modal. */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -243,6 +267,7 @@ h3 {
   justify-content: center;
   z-index: 100;
 }
+/* Conteúdo do modal. */
 .modal-content {
   background: white;
   padding: 24px;
@@ -252,6 +277,7 @@ h3 {
   animation: fadeIn 0.3s ease;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
+/* Campos de input dentro do modal. */
 .modal-content input {
   width: 100%;
   padding: 10px;
@@ -260,6 +286,7 @@ h3 {
   border: 1px solid #ccc;
   font-family: "Poppins", sans-serif;
 }
+/* Botões de ação dentro do modal. */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
@@ -268,6 +295,7 @@ h3 {
 }
 
 /* === TELA DO TABULEIRO === */
+/* Cabeçalho da tela do tabuleiro (placar e área do dado). */
 .board-header {
   display: flex;
   justify-content: space-between;
@@ -281,17 +309,13 @@ h3 {
 .dice-area {
   text-align: center;
 }
-.dice-result {
-  font-size: 24px;
-  font-weight: 700;
-  margin-top: 5px;
-  min-height: 30px;
-}
+/* Container para o dado 3D. */
 .dice-container {
   position: relative; /* Garante o contexto de empilhamento */
   z-index: 10; /* Coloca o dado na frente de outros elementos do card */
   min-height: 50px; /* Espaço para o dado não empurrar o layout */
 }
+/* Container que permite a rolagem horizontal do tabuleiro. */
 .board-container {
   height: 120px; /* Altura para acomodar as casas */
   overflow-x: auto; /* Scroll horizontal */
@@ -300,11 +324,13 @@ h3 {
   border-radius: 12px;
   border: 1px solid var(--border-color);
 }
+/* O tabuleiro em si, que é mais largo que o container. */
 .game-board {
   position: relative;
   width: 100%;
   height: 80px; /* Altura para o conteúdo do tabuleiro */
 }
+/* Estilo de cada casa/espaço no tabuleiro. */
 .board-space {
   position: absolute; /* Cada casa será posicionada individualmente */
   width: 70px;
@@ -321,27 +347,32 @@ h3 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   transition: transform var(--transition);
 }
+/* Estilo para a casa de início. */
 .board-space.start {
   background: var(--accent-light);
   border-color: var(--accent);
 }
+/* Estilo para a casa de chegada. */
 .board-space.finish {
   background: #fffbe6;
   border-color: #ffc107;
 }
+/* Estilo para casas especiais (bônus). */
 .board-space.special {
   background: #fff3e0;
   color: var(--special);
 }
-/* Efeito de hover para as casas (opcional) */
+/* Efeito de hover para as casas. */
 .board-space:hover {
   transform: translateY(-2px);
 }
+/* Texto pequeno dentro de cada casa (nome do bioma, etc.). */
 .board-space small {
   font-size: 10px;
   font-weight: 600;
   margin-top: 4px;
 }
+/* O peão do jogador (foguete). */
 .player-pawn {
   position: absolute;
   width: 40px;
@@ -356,6 +387,7 @@ h3 {
 }
 
 /* === CONTROLE DE MÚSICA === */
+/* Botão flutuante para controlar a música. */
 .music-toggle {
   position: fixed;
   top: 15px;
@@ -378,9 +410,10 @@ h3 {
 }
 
 /* === LOGO DO SITE === */
+/* Logo do site, posicionado no canto superior esquerdo. */
 .site-logo {
-  position: absolute;
-  top: 15px;
+  position: absolute; /* Alterado de 'fixed' para rolar com a página. */
+  top: 10px;
   left: 15px;
   width: 70px;
   height: 70px;
@@ -391,6 +424,7 @@ h3 {
   transform: scale(1.1);
 }
 /* === ANIMAÇÃO DO DADO 3D === */
+/* Container principal do dado 3D. */
 .dice {
   width: 50px;
   height: 50px;
@@ -400,6 +434,7 @@ h3 {
   transition: transform 1s;
 }
 
+/* Estilo base para cada uma das 6 faces do dado. */
 .dice .face {
   position: absolute;
   width: 50px;
@@ -414,6 +449,7 @@ h3 {
   justify-content: center;
 }
 
+/* Posição de cada face no espaço 3D usando transformações. */
 .face.front {
   transform: rotateY(0deg) translateZ(25px);
 }
@@ -433,7 +469,7 @@ h3 {
   transform: rotateX(-90deg) translateZ(25px);
 }
 
-/* Animação de rolagem */
+/* Aplica a animação 'roll' quando o dado está rolando. */
 .dice.rolling {
   animation: roll 1s ease-in-out;
 }
@@ -446,7 +482,7 @@ h3 {
   }
 }
 
-/* Posições finais do dado */
+/* Classes para mostrar a face correta do dado após a rolagem. */
 .dice.show-1 {
   transform: translateZ(-25px) rotateY(0deg);
 }
